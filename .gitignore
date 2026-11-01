@@ -1,0 +1,38 @@
+# Original and processed datasets - confidential
+data/raw/
+data/processed/
+
+# Generated predictions and claim-level outputs
+predictions.csv
+outputs/
+
+# Trained models
+*.cbm
+*.pkl
+*.joblib
+
+# Private evidence and recordings
+evidence/
+
+# Python cache and environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# macOS files
+.DS_Store
+
+# Logs
+*.log
+
+# Internal business submission
+Business Memo/
+
+# macOS metadata
+.DS_Store
+.localized

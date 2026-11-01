@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kestrel | Warranty Claim Review</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f3f5f9;
+            color: #202938;
+            padding: 35px 18px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+        header {
+            margin-bottom: 28px;
+        }
+        .brand {
+            color: #3157c8;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #697386;
+            font-size: 14px;
+        }
+        .layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 22px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid #e5e9f1;
+            box-shadow: 0 4px 15px rgba(20, 35, 70, 0.04);
+        }
+        h2 {
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+        .field-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .field {
+            margin-bottom: 16px;
+        }
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 7px;
+            color: #596579;
+        }
+        input, select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #dce1eb;
+            border-radius: 7px;
+            font-size: 13px;
+            background: white;
+            color: #202938;
+        }
+        input:focus, select:focus {
+            outline: 2px solid #cbd7ff;
+            border-color: #3157c8;
+        }
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #3157c8;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        button:hover {
+            background: #2545a8;
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+        .result-placeholder {
+            color: #8993a4;
+            font-size: 13px;
+            line-height: 1.7;
+            text-align: center;
+            padding: 35px 10px;
+        }
+        .result {
+            display: none;
+        }
+        .score {
+            font-size: 36px;
+            font-weight: 750;
+            margin: 12px 0 5px;
+        }
+        .risk {
+            display: inline-block;
+            padding: 6px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .High {
+            background: #ffe6e6;
+            color: #bd3030;
+        }
+        .Medium {
+            background: #fff1d8;
+            color: #956000;
+        }
+        .Low {
+            background: #e1f5e9;
+            color: #247647;
+        }
+        .section {
+            border-top: 1px solid #edf0f5;
+            padding-top: 17px;
+            margin-top: 16px;
+        }
+        .section h3 {
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        ul {
+            padding-left: 18px;
+            color: #596579;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        .recommendation {
+            background: #f2f5ff;
+            border-radius: 8px;
+            padding: 13px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .disclaimer {
+            color: #8993a4;
+            font-size: 11px;
+            line-height: 1.5;
+            margin-top: 18px;
+        }
+        .error {
+            color: #bd3030;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+        footer {
+            text-align: center;
+            color: #8993a4;
+            font-size: 11px;
+            margin-top: 25px;
+        }
+        @media (max-width: 700px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+            .field-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="brand">KESTREL · CLAIM INTELLIGENCE</div>
+        <h1>Warranty Claim Review</h1>
+        <p class="subtitle">
+            AI-assisted fraud risk assessment for warranty claims.
+        </p>
+    </header>
+    <main class="layout">
+        <section class="card">
+            <h2>Claim Information</h2>
+            <form id="claimForm">
+                <div class="field">
+                    <label>Claim ID</label>
+                    <input name="claim_id" required placeholder="e.g. WC711348">
+                </div>
+                <div class="field-grid">
+                    <div class="field">
+                        <label>Submission Date & Time</label>
+                        <input name="submitted_at" type="datetime-local" required>
+                    </div>
+                    <div class="field">
+                        <label>Partner ID</label>
+                        <input name="partner_id" required>
+                    </div>
+                    <div class="field">
+                        <label>Product SKU</label>
+                        <input name="sku" required>
+                    </div>
+                    <div class="field">
+                        <label>Product Serial</label>
+                        <input name="product_serial">
+                    </div>
+                    <div class="field">
+                        <label>Days Since Purchase</label>
+                        <input name="days_since_purchase" type="number" min="0" required>
+                    </div>
+                    <div class="field">
+                        <label>Claim Amount (₹)</label>
+                        <input name="claim_amount_inr" type="number" min="0.01" step="0.01" required>
+                    </div>
+                    <div class="field">
+                        <label>Previous Customer Claims</label>
+                        <input name="customer_prior_claims" type="number" min="0" required>
+                    </div>
+                    <div class="field">
+                        <label>Photo Attached</label>
+                        <select name="photo_attached" required>
+                            <option value="Y">Yes</option>
+                            <option value="N">No</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Claim Source</label>
+                        <select name="source" required>
+                            <option value="crm">CRM</option>
+                            <option value="legacy_zoho">Legacy Zoho</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="submitButton" type="submit">
+                    Analyze Claim
+                </button>
+                <p id="errorMessage" class="error"></p>
+            </form>
+        </section>
+        <section class="card">
+            <h2>Risk Assessment</h2>
+            <div id="placeholder" class="result-placeholder">
+                <p>Claim analysis results will appear here.</p>
+                <p>Enter the claim details and select Analyze Claim.</p>
+            </div>
+            <div id="result" class="result">
+                <p class="subtitle">Fraud Risk Score</p>
+                <div id="score" class="score">--</div>
+                <span id="risk" class="risk">--</span>
+                <div class="section">
+                    <h3>Review Signals</h3>
+                    <ul id="signals"></ul>
+                </div>
+                <div class="section">
+                    <h3>Recommendation</h3>
+                    <div id="recommendation" class="recommendation"></div>
+                </div>
+                <p id="disclaimer" class="disclaimer"></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        Kestrel Warranty Claim Review · Local CatBoost Model · Decision Support Only
+    </footer>
+</div>
+<script>
+    const form = document.getElementById("claimForm");
+    form.addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const button = document.getElementById("submitButton");
+        const error = document.getElementById("errorMessage");
+        error.textContent = "";
+        button.disabled = true;
+        button.textContent = "Analyzing...";
+        const data = new FormData(form);
+        const claim = {
+            claim_id: data.get("claim_id").trim(),
+            submitted_at: data.get("submitted_at").replace("T", " "),
+            partner_id: data.get("partner_id").trim(),
+            sku: data.get("sku").trim(),
+            product_serial: data.get("product_serial").trim(),
+            days_since_purchase: Number(data.get("days_since_purchase")),
+            claim_amount_inr: Number(data.get("claim_amount_inr")),
+            customer_prior_claims: Number(data.get("customer_prior_claims")),
+            photo_attached: data.get("photo_attached"),
+            source: data.get("source")
+        };
+        try {
+            const response = await fetch("/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(claim)
+            });
+            const result = await response.json();
+            if (!response.ok) {
+                throw new Error(result.detail || "Prediction failed.");
+            }
+            document.getElementById("placeholder").style.display = "none";
+            document.getElementById("result").style.display = "block";
+            document.getElementById("score").textContent =
+                (result.fraud_risk_score * 100).toFixed(2) + "%";
+            const risk = document.getElementById("risk");
+            risk.textContent = result.risk_level + " Risk";
+            risk.className = "risk " + result.risk_level;
+            const signals = document.getElementById("signals");
+            signals.replaceChildren();
+            result.review_signals.forEach(function(signal) {
+                const item = document.createElement("li");
+                item.textContent = signal;
+                signals.appendChild(item);
+            });
+            document.getElementById("recommendation").textContent =
+                result.recommendation;
+            document.getElementById("disclaimer").textContent =
+                result.disclaimer;
+        } catch (err) {
+            error.textContent = err.message;
+        } finally {
+            button.disabled = false;
+            button.textContent = "Analyze Claim";
+        }
+    });
+</script>
+</body>
+</html>
