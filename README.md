@@ -250,7 +250,8 @@ Original customer datasets, partner records, claim-level predictions, trained mo
 The dashboard provides a simple interface for entering warranty claim
 information and viewing the model-generated fraud risk assessment.
 
-![Warranty Claim Review Dashboard](docs/images/dashboard_prediction.png)
+<img width="2560" height="1600" alt="image" src="https://github.com/user-attachments/assets/ea7ec112-dfe1-448e-afb9-08e1e90a1a39" />
+
 
 The interface displays:
 - Claim information
